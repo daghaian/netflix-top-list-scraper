@@ -3,11 +3,12 @@ Scrapes the Top 10 Lists for Movies/TV for US netflix
 
 ## Requirements
 1. You must have Python 3.~ installed
+2. Must have Chrome installed on the system you wish to run this script on
 
 ## Installation
 1. Run `pip install -r requirements.txt `from within the repo
 2. Make sure you either expose the required environment variables before running script or edit the script yourself and replace the appropriate values for the expected variables
-4. Download the appropriate version of chrome driver and place it inside the repo ([https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads))
+4. Download the appropriate version of chrome driver that matches your current version of chrome and place it inside the repo ([https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads))
 4. Run `python netflix.py` 
 
 ## Configuration
