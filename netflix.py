@@ -53,6 +53,7 @@ def extract_top_list(driver,list):
                 WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='slider-refocus title-card title-card-top-10']")))
                 soup = BeautifulSoup(driver.page_source,"html.parser")
                 titles = soup.find_all("div",{"class":"title-card-top-10"})
+
                 for t in titles:
                     title = t.find("div").find("a").get('aria-label')
                     if title not in top_list:
