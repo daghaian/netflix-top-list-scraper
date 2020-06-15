@@ -52,7 +52,7 @@ def extract_top_list(driver,list):
                 driver.execute_script('document.evaluate("//div[@data-list-context=\'mostWatched\']//b[@class=\'indicator-icon icon-rightCaret\']",document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()')
                 WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='slider-refocus title-card title-card-top-10']")))
                 soup = BeautifulSoup(driver.page_source,"html.parser")
-                titles = soup.find_all("div",{"class":"slider-refocus title-card title-card-top-10"})
+                titles = soup.find_all("div",{"class":"title-card-top-10"})
                 for t in titles:
                     title = t.find("div").find("a").get('aria-label')
                     if title not in top_list:
@@ -154,8 +154,10 @@ def add_to_trakt(media_list, category):
 
 chrome_options = Options()  
 chrome_options.add_argument("--headless") 
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-gpu")
 
-driver = webdriver.Chrome(executable_path=os.path.abspath("chromedriver"),chrome_options=chrome_options)
+driver = webdriver.Chrome(chrome_options=chrome_options)
 
 login(driver)
 
