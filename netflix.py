@@ -141,13 +141,19 @@ def add_to_trakt(media_list, category):
         if r.status_code == 200:
             logger.info("Request completed successfully: {}".format(r.text))
             if category == 'movie':
-                url = TRAKT_LISTS["movies"]
+                url = "{}/items".format(TRAKT_LISTS["movies"])
                 data = {"movies":[json.loads(r.text)[0]['movie']]}
             else:
-                url = TRAKT_LISTS["shows"]
+                url = "{}/items".format(TRAKT_LISTS["shows"])
                 data = {"shows":[json.loads(r.text)[0]['show']]}
                 
             r = requests.post(url, headers={'trakt-api-key': TRAKT_API_KEY, 'Authorization': 'Bearer {}'.format(TRAKT_ACCESS_TOKEN)}, json=data)
+            if r.status_code == 200:
+                logger.info("Added {} successfully".format(json.loads(r.text)[0]['show']))
+            else:
+                logger.error("Error encountered when trying to add {}: Status Code - {} Message - {}".format(data,r.status_code,r.text))
+                logger.info(r.status_code)
+                logger.info(r.text)
         else:
             logger.info(r.status_code)
             logger.info(r.text)
