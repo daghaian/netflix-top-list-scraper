@@ -1,0 +1,6 @@
+# action.yml
+name: 'Run scraper'
+description: 'Runs the scraper on interval'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
