@@ -1,11 +1,22 @@
-on: [push]
 
 jobs:
-  hello_world_job:
+ build_image:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    on:
+      push
+    name: Builds image and pushes to Dockerhub
+    steps:
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1.1.0 
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
+      repository: daghaian/netflix-top-list-scraper
+      tags: latest
+ run_scraper:
+    runs-on: ubuntu-latest
+    on:
+      push
     steps:
     - uses: actions/checkout@v1
-    - name: Hello world action step
-      id: hello
+    - name: Run scraper 
       uses: ./

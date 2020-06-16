@@ -3,4 +3,4 @@ name: 'Run scraper'
 description: 'Runs the scraper on interval'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'daghaian/netflix-top-list-scraper' 
