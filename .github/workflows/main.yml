@@ -17,7 +17,15 @@ jobs:
  run_scraper:
     runs-on: ubuntu-latest
     needs: build_image
+    env:
+      TRAKT_API_KEY: ${{ secrets.TRAKT_API_KEY }}
+      TRAKT_ACCESS_TOKEN: ${{ .secrets.TRAKT_ACCESS_TOKEN }}
+      TRAKT_MOVIE_LIST: ${{ .secrets.TRAKT_MOVIE_LIST }}
+      TRAKT_TV_LIST: ${{ .secrets.TRAKT_TV_LIST }}
+      NETFLIX_USERNAME: ${{ .secrets.NETFLIX_USERNAME }}
+      NETFLIX_PASSWORD: ${{ .secrets.NETFLIX_PASSWORD }}
     steps:
     - uses: actions/checkout@v1
     - name: Run scraper 
       uses: ./
+     
