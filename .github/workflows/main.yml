@@ -12,7 +12,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: daghaian/netflix-top-list-scraper
         tags: latest
-        dockerfile: ./Dockerfile
+
  run_scraper:
     runs-on: ubuntu-latest
     steps:
